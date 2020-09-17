@@ -1,0 +1,97 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Filmoteca</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  </head>
+  <link rel="stylesheet" href="src/css/index.css">
+  <script src="src/js/añadirPelicula.js"></script>
+  <script src="src/js/listaPeliculas.js"></script>
+  <script src="src/js/ordenAscendente.js"></script>
+  <script src="src/js/ordenDescendente.js"></script>
+  <script src="src/js/searching.js"></script>
+  <script type="text/javascript">
+  			
+      function show (){
+  			document.getElementById('wrap').style.display = "block";
+  		}
+  		function hide (){
+  			document.getElementById('wrap').style.display = "none";
+  		}
+
+  		function mostrarOcultar(){
+  			let wrap = document.getElementById('wrap');
+
+  			if(wrap.style.display == "none"){
+  				show();
+  			} else {
+  				hide();
+  			}
+      }
+
+  //Execute function LoadFunctions
+    window.onload= LoadFunctions;
+
+    function alta() {
+      document.getElementById('formulario').onsubmit=function() {
+        event.preventDefault()
+        añadirPelicula()
+      }
+    }
+    function lista() {
+      consultar();
+    }
+    function ordenAsc(){
+      document.getElementById('ascendente').onclick=function() {
+      ordenarAsc();
+      }
+    }
+    function ordenDes(){
+      document.getElementById('descendente').onclick=function() {
+      ordenarDes();
+      }
+    }
+    function searching(){
+      doSearch();
+    }
+
+    function LoadFunctions (){
+      alta()
+      lista()
+      ordenAsc()
+      ordenDes()
+      searching()
+    }
+
+  </script>
+  <body class="text-center">
+    <input type="submit" value="Agregar" onclick="mostrarOcultar()">
+
+    <div id="wrap" style.display = 'none'>
+    	<form method="post" id='formulario'>
+        <input type="text" id='titulo' placeholder="Título película">
+        <input type="number" id='año' placeholder="Año">
+        <input type="submit" id='alta' value="enviar">  
+      </form>
+    </div>
+    <form>
+        <input id="busqueda" type="text" placeholder="Buscar" class="font-italic" onkeyup="searching()" />
+    </form>
+    <input type="submit" value="Orden ascendente" id="ascendente" onclick="ordenAsc()">
+    <input type="submit" value="Orden descendente" id="descendente" onclick="ordenDes()">
+    <div class="row justify-content-md-center">
+      <table class="col-sm-6 justify-content-md-center" id='tabla' border='3px solid blue'>
+      <tbody id='listado'>
+            <tr class='noSearch hide'>
+                <td colspan="5"></td>
+            </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+  </body>
+</html>
